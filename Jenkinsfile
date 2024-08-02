@@ -7,7 +7,7 @@ pipeline {
   }
 
   environment {
-    GIT_NAME = "volto-addon-template"
+    GIT_NAME = "volto-flourish"
     NAMESPACE = "@eeacms"
     SONARQUBE_TAGS = "volto.eea.europa.eu"
     DEPENDENCIES = ""
@@ -159,7 +159,7 @@ pipeline {
                 }
               }
           }
-            
+
           stage('Integration tests') {
               when { environment name: 'SKIP_TESTS', value: '' }
               steps {
@@ -256,9 +256,9 @@ pipeline {
         }
       }
 
-      stage('Volto 16') { 
+      stage('Volto 16') {
         agent { node { label 'integration'} }
-        when { 
+        when {
           environment name: 'SKIP_TESTS', value: ''
           not { environment name: 'VOLTO16_BREAKING_CHANGES', value: 'yes' }
         }
@@ -349,10 +349,10 @@ pipeline {
           allOf {
             not { environment name: 'CHANGE_ID', value: '' }
             environment name: 'CHANGE_TARGET', value: 'develop'
-            environment name: 'SKIP_TESTS', value: '' 
+            environment name: 'SKIP_TESTS', value: ''
           }
           allOf {
-            environment name: 'SKIP_TESTS', value: '' 
+            environment name: 'SKIP_TESTS', value: ''
             environment name: 'CHANGE_ID', value: ''
             branch 'develop'
             not { changelog '.*^Automated release [0-9\\.]+$' }
@@ -413,4 +413,3 @@ pipeline {
     }
   }
 }
-
