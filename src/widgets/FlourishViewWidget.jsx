@@ -1,11 +1,3 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import config from '@plone/volto/registry';
-import { useLocation } from 'react-router-dom';
-import flourishMiddleware from '../middleware';
-
 const FlourishViewWidget = (props) => {
   //TODO: check if have flouris??!?!?!
   const flourish_url = props.value.download.replace(
