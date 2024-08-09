@@ -14,11 +14,13 @@
 [![Bugs](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-flourish-develop&metric=bugs)](https://sonarqube.eea.europa.eu/dashboard?id=volto-flourish-develop)
 [![Duplicated Lines (%)](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-flourish-develop&metric=duplicated_lines_density)](https://sonarqube.eea.europa.eu/dashboard?id=volto-flourish-develop)
 
-
 [Volto](https://github.com/plone/volto) add-on
 
 ## Features
 
+Flourish integration
+
+TODO:
 Demo GIF
 
 ## Getting started
@@ -42,25 +44,25 @@ Go to http://localhost:3000
 
 1. Start Volto frontend
 
-* If you already have a volto project, just update `package.json`:
+- If you already have a volto project, just update `package.json`:
 
-   ```JSON
-   "addons": [
-       "@eeacms/volto-flourish"
-   ],
+  ```JSON
+  "addons": [
+      "@eeacms/volto-flourish"
+  ],
 
-   "dependencies": {
-       "@eeacms/volto-flourish": "*"
-   }
-   ```
+  "dependencies": {
+      "@eeacms/volto-flourish": "*"
+  }
+  ```
 
-* If not, create one:
+- If not, create one:
 
-   ```
-   npm install -g yo @plone/generator-volto
-   yo @plone/volto my-volto-project --canary --addon @eeacms/volto-flourish
-   cd my-volto-project
-   ```
+  ```
+  npm install -g yo @plone/generator-volto
+  yo @plone/volto my-volto-project --canary --addon @eeacms/volto-flourish
+  cd my-volto-project
+  ```
 
 1. Install new add-ons and restart Volto:
 
@@ -91,7 +93,7 @@ See [LICENSE.md](https://github.com/eea/volto-flourish/blob/master/LICENSE.md) f
 ## Funding
 
 [European Environment Agency (EU)](http://eea.europa.eu)
- (EEA).
+(EEA).
 All Rights Reserved.
 
 See [LICENSE.md](https://github.com/eea/volto-addon-template/blob/master/LICENSE.md) for details.
