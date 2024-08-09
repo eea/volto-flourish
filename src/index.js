@@ -1,3 +1,6 @@
+import installBlocks from './blocks';
+import { FlourishViewWidget } from './widgets';
+
 const applyConfig = (config) => {
   if (__SERVER__) {
     const express = require('express');
@@ -12,7 +15,8 @@ const applyConfig = (config) => {
       middleware,
     ];
   }
-  return config;
+  config.widgets.views.id.flourish_zip = FlourishViewWidget;
+  return [installBlocks].reduce((acc, apply) => apply(acc), config);
 };
 
 export default applyConfig;
