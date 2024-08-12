@@ -1,5 +1,5 @@
 const FlourishViewWidget = (props) => {
-  const flourish_url = props.value?.download.replace(
+  const flourish_url = props.value?.download?.replace(
     '/@@download/flourish_zip',
     '/@@flourish/index.html',
   );
