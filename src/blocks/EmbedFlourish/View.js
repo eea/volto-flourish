@@ -1,12 +1,13 @@
 const View = (props) => {
   const flourish_url = props.data.flourish_item_url + '/@@flourish/index.html';
+  console.log(props.data);
   return (
     <div className="embed-flourish">
       {props.data.flourish_item_url ? (
         <iframe
           src={flourish_url}
           width="100%"
-          height="600px"
+          height={props.data.flourish_iframe_height}
           title="FlourishEmbed"
           style={{ border: '0px' }}
         ></iframe>

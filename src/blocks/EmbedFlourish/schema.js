@@ -41,6 +41,7 @@ const schema = (props) => {
             {props.intl.formatMessage(messages.CSSHeight)}
           </a>
         ),
+        default: 600,
         description: props.intl.formatMessage(
           messages.CSSFlourishHeightDescription,
         ),
