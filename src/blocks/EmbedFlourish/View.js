@@ -5,9 +5,10 @@ const View = (props) => {
       {props.data.flourish_item_url ? (
         <iframe
           src={flourish_url}
-          height="400"
           width="100%"
+          height="600px"
           title="FlourishEmbed"
+          style={{ border: '0px' }}
         ></iframe>
       ) : props.mode ? (
         <div>Embed flourish</div>
