@@ -1,6 +1,5 @@
 const View = (props) => {
   const flourish_url = props.data.flourish_item_url + '/@@flourish/index.html';
-  console.log(props.data);
   return (
     <div className="embed-flourish">
       {props.data.flourish_item_url ? (
