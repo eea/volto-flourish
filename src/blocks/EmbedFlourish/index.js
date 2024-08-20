@@ -19,11 +19,6 @@ const config = (config) => {
       addPermission: [],
       view: [],
     },
-    breakpoints: {
-      desktop: [Infinity, 992],
-      tablet: [991, 768],
-      phone: [767, 0],
-    },
   };
 
   return config;

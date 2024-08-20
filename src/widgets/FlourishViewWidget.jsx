@@ -3,18 +3,16 @@ const FlourishViewWidget = (props) => {
     '/@@download/flourish_zip',
     '/@@flourish/index.html',
   );
-  return (
-    <div>
-      {props.value ? (
-        <iframe
-          src={flourish_url}
-          height="400"
-          width="100%"
-          title="Flourish Widget"
-        ></iframe>
-      ) : null}
+  return props.value ? (
+    <div className="flourish-view-widget">
+      <iframe
+        src={flourish_url}
+        height="100%"
+        width="100%"
+        title="Flourish Widget"
+      ></iframe>
     </div>
-  );
+  ) : null;
 };
 
 export default FlourishViewWidget;
