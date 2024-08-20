@@ -20,8 +20,8 @@
 
 Flourish integration
 
-TODO:
-Demo GIF
+#### IMPORTANT! In order to load a Flourish visualization, the eea.api.dataconnector addon needs to be active on the Plone side.
+![Flourish Block](./docs/preview.png "Flourish Block")
 
 ## Getting started
 
