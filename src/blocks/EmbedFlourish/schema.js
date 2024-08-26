@@ -18,7 +18,12 @@ const schema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: ['flourish_item_url', 'flourish_iframe_height'],
+        fields: [
+          'flourish_test_url',
+          'flourish_item_url',
+          'flourish_iframe_height',
+          'with_sources',
+        ],
       },
     ],
     properties: {
@@ -45,6 +50,12 @@ const schema = (props) => {
         description: props.intl.formatMessage(
           messages.CSSFlourishHeightDescription,
         ),
+      },
+      with_sources: {
+        title: 'Show sources',
+        description: 'Will show sources set in this page Data provenance',
+        type: 'boolean',
+        defaultValue: true,
       },
     },
 

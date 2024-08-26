@@ -1,24 +1,55 @@
-const View = (props) => {
-  const flourish_url = props.data.flourish_item_url + '/@@flourish/index.html';
-  const { flourish_iframe_height = '600px' } = props.data;
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getContent } from '@plone/volto/actions';
+import { flattenToAppURL } from '@plone/volto/helpers';
+import { Sources } from '@eeacms/volto-embed/Toolbar';
+
+export default function View(props) {
+  const { id, data } = props;
+
+  const {
+    with_sources,
+    flourish_item_url,
+    flourish_iframe_height = '600px',
+  } = data;
+
+  const flourish_url = flourish_item_url + '/@@flourish/index.html';
+  const vis_url = flattenToAppURL(flourish_item_url || '');
+  const dispatch = useDispatch();
+
+  const flourishItemContent = useSelector(
+    (state) => state.content?.subrequests?.[id]?.data,
+  );
+
+  useEffect(() => {
+    if (vis_url) {
+      const action = getContent(vis_url, null, id);
+      dispatch(action);
+    }
+  }, [dispatch, vis_url]);
+
   return (
     <div className="embed-flourish">
-      {props.data.flourish_item_url ? (
-        <iframe
-          src={flourish_url}
-          width="100%"
-          // height={props.data.flourish_iframe_height}
-          title="FlourishEmbed"
-          style={{
-            border: '0px',
-            height: flourish_iframe_height,
-          }}
-        ></iframe>
+      {flourish_item_url ? (
+        <div>
+          <iframe
+            src={flourish_url}
+            width="100%"
+            title={flourishItemContent?.title}
+            style={{
+              border: '0px',
+              height: flourish_iframe_height,
+            }}
+          ></iframe>
+          {with_sources && flourishItemContent?.data_provenance?.data && (
+            <Sources
+              sources={flourishItemContent?.data_provenance?.data || []}
+            />
+          )}
+        </div>
       ) : props.mode ? (
         <div>Embed flourish</div>
       ) : null}
     </div>
   );
-};
-
-export default View;
+}
