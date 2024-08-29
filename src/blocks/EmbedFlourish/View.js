@@ -26,7 +26,7 @@ export default function View(props) {
       const action = getContent(vis_url, null, id);
       dispatch(action);
     }
-  }, [dispatch, vis_url]);
+  }, [dispatch, vis_url, id]);
 
   return (
     <div className="embed-flourish">
