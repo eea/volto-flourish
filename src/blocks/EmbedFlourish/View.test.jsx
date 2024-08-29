@@ -10,6 +10,10 @@ const mockStore = configureStore();
 
 describe('View', () => {
   it('should render the component', () => {
+    const data = {
+      flourish_item_url: null,
+    };
+
     const store = mockStore({
       userSession: { token: '1234' },
       intl: {
@@ -21,7 +25,7 @@ describe('View', () => {
     const { container } = render(
       <Provider store={store}>
         <MemoryRouter>
-          <View />
+          <View {...data} />
         </MemoryRouter>
       </Provider>,
     );
