@@ -11,8 +11,8 @@ const mockStore = configureStore();
 describe('View', () => {
   it('should render the component', () => {
     const data = {
-      with_sources: null,
-      flourish_item_url: null,
+      with_sources: false,
+      flourish_item_url: undefined,
     };
 
     const store = mockStore({
@@ -26,7 +26,7 @@ describe('View', () => {
     const { container } = render(
       <Provider store={store}>
         <MemoryRouter>
-          <View {...data} />
+          <View data={data} />
         </MemoryRouter>
       </Provider>,
     );

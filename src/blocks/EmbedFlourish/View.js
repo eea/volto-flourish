@@ -8,7 +8,7 @@ export default function View(props) {
   const { id, data } = props;
 
   const {
-    with_sources,
+    with_sources = false,
     flourish_item_url,
     flourish_iframe_height = '600px',
   } = data;
