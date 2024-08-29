@@ -16,10 +16,12 @@
     "type": "git",
     "url": "git@github.com:eea/volto-flourish.git"
   },
+  "addons": [
+    "@eeacms/volto-embed"
+  ],
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.0",
     "@plone/scripts": "*",
-    "@eeacms/volto-embed": "*",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cypress": "13.1.0",
     "cypress-fail-fast": "^5.0.1",
@@ -67,5 +69,8 @@
     "i18n": "make i18n",
     "cypress:run": "make cypress-run",
     "cypress:open": "make cypress-open"
+  },
+  "dependencies": {
+    "@eeacms/volto-embed": "*"
   }
 }
