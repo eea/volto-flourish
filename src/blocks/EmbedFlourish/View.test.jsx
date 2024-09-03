@@ -12,6 +12,10 @@ describe('View', () => {
   it('should render the component', () => {
     const data = {
       with_sources: false,
+      with_notes: false,
+      with_share: false,
+      with_enlarge: false,
+      with_more_info: false,
       flourish_item_url: undefined,
     };
 
