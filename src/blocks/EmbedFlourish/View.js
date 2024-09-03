@@ -2,13 +2,21 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
 import { flattenToAppURL } from '@plone/volto/helpers';
-import { Sources } from '@eeacms/volto-embed/Toolbar';
+// import { Sources } from '@eeacms/volto-embed/Toolbar';
+
+import {
+  FigureNote,
+  Sources,
+  MoreInfo,
+  Share,
+  Enlarge,
+} from '@eeacms/volto-embed/Toolbar';
 
 export default function View(props) {
   const { id, data } = props;
 
   const {
-    with_sources = false,
+    with_sources,
     flourish_item_url,
     flourish_iframe_height = '600px',
   } = data;
@@ -20,6 +28,10 @@ export default function View(props) {
   const flourishItemContent = useSelector(
     (state) => state.content?.subrequests?.[id]?.data,
   );
+  console.log('flourishItemContent', flourishItemContent, with_sources, id);
+  console.log('props', props);
+  console.log('data', data);
+  console.log("data['@id']", data['@id']);
 
   useEffect(() => {
     if (vis_url) {
@@ -27,6 +39,13 @@ export default function View(props) {
       dispatch(action);
     }
   }, [dispatch, vis_url, id]);
+
+  const with_notes = false;
+  const loaded = true;
+  const with_download = false;
+  const with_share = true;
+  const with_enlarge = false;
+  const with_more_info = false;
 
   return (
     <div className="embed-flourish">
@@ -46,6 +65,39 @@ export default function View(props) {
               sources={flourishItemContent?.data_provenance?.data || []}
             />
           )}
+          <div className="visualization-toolbar">
+            <div className="left-col">
+              {with_notes && <FigureNote notes={figure_note || []} />}
+              {with_sources && (
+                <Sources
+                  sources={flourishItemContent?.data_provenance?.data || []}
+                />
+              )}
+              {with_more_info && <MoreInfo href={data['@id']} />}
+            </div>
+            <div className="right-col">
+              {with_download && loaded && <Download viz={viz.current} />}
+              {with_share && loaded && (
+                <Share href={props?.properties['@id']} />
+              )}
+              {with_enlarge && loaded && (
+                <Enlarge>
+                  <Tableau
+                    {...props}
+                    data={{
+                      ...props.data,
+                      with_notes: false,
+                      with_sources: false,
+                      with_more_info: false,
+                      with_enlarge: false,
+                      with_share: false,
+                      with_download: false,
+                    }}
+                  />
+                </Enlarge>
+              )}
+            </div>
+          </div>
         </div>
       ) : props.mode ? (
         <div>Embed flourish</div>
