@@ -54,38 +54,42 @@ export default function View(props) {
               height: flourish_iframe_height,
             }}
           ></iframe>
-          {flourishItemContent && (<div className="visualization-toolbar">
-            <div className="left-col">
-              {with_notes && <FigureNote notes={flourishItemContent?.figure_note || []} />}
-              {flourishItemContent && with_sources && (
-                <Sources
-                  sources={flourishItemContent?.data_provenance?.data || []}
-                />
-              )}
-              {with_more_info && <MoreInfo href={flourishItemContent["@id"]} />}
-            </div>
-            <div className="right-col">
-              {with_share  && (
-                <Share href={flourishItemContent["@id"]} />
-              )}
-              {with_enlarge && (
-                <Enlarge>
-                  <View
-                    {...props}
-                    data={{
-                      ...props.data,
-                      with_notes: false,
-                      with_sources: false,
-                      with_more_info: false,
-                      with_enlarge: false,
-                      with_share: false,
-                      with_download: false,
-                    }}
+          {flourishItemContent && (
+            <div className="visualization-toolbar">
+              <div className="left-col">
+                {with_notes && (
+                  <FigureNote notes={flourishItemContent?.figure_note || []} />
+                )}
+                {flourishItemContent && with_sources && (
+                  <Sources
+                    sources={flourishItemContent?.data_provenance?.data || []}
                   />
-                </Enlarge>
-              )}
+                )}
+                {with_more_info && (
+                  <MoreInfo href={flourishItemContent['@id']} />
+                )}
+              </div>
+              <div className="right-col">
+                {with_share && <Share href={flourishItemContent['@id']} />}
+                {with_enlarge && (
+                  <Enlarge>
+                    <View
+                      {...props}
+                      data={{
+                        ...props.data,
+                        with_notes: false,
+                        with_sources: false,
+                        with_more_info: false,
+                        with_enlarge: false,
+                        with_share: false,
+                        with_download: false,
+                      }}
+                    />
+                  </Enlarge>
+                )}
+              </div>
             </div>
-          </div>)}
+          )}
         </div>
       ) : props.mode ? (
         <div>Embed flourish</div>
