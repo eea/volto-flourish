@@ -22,7 +22,18 @@ const schema = (props) => {
           'flourish_test_url',
           'flourish_item_url',
           'flourish_iframe_height',
+        ],
+      },
+      {
+        id: 'toolbar',
+        title: 'Toolbar',
+        fields: [
           'with_sources',
+          'with_notes',
+          'with_more_info',
+          // 'with_download',
+          'with_share',
+          'with_enlarge',
         ],
       },
     ],
@@ -51,9 +62,34 @@ const schema = (props) => {
           messages.CSSFlourishHeightDescription,
         ),
       },
+      with_notes: {
+        title: 'Show note',
+        type: 'boolean',
+        defaultValue: true,
+      },
       with_sources: {
         title: 'Show sources',
         description: 'Will show sources set in this page Data provenance',
+        type: 'boolean',
+        defaultValue: true,
+      },
+      with_more_info: {
+        title: 'Show more info',
+        type: 'boolean',
+        defaultValue: true,
+      },
+      with_enlarge: {
+        title: 'Show enlarge button',
+        type: 'boolean',
+        defaultValue: true,
+      },
+      // with_download: {
+      //   title: 'Show download button',
+      //   type: 'boolean',
+      //   defaultValue: true,
+      // },
+      with_share: {
+        title: 'Show share button',
         type: 'boolean',
         defaultValue: true,
       },

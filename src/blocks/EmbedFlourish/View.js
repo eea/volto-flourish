@@ -17,6 +17,11 @@ export default function View(props) {
 
   const {
     with_sources,
+    // with_download,
+    with_notes,
+    with_share,
+    with_enlarge,
+    with_more_info,
     flourish_item_url,
     flourish_iframe_height = '600px',
   } = data;
@@ -28,10 +33,6 @@ export default function View(props) {
   const flourishItemContent = useSelector(
     (state) => state.content?.subrequests?.[id]?.data,
   );
-  console.log('flourishItemContent', flourishItemContent, with_sources, id);
-  console.log('props', props);
-  console.log('data', data);
-  console.log("data['@id']", data['@id']);
 
   useEffect(() => {
     if (vis_url) {
@@ -39,13 +40,6 @@ export default function View(props) {
       dispatch(action);
     }
   }, [dispatch, vis_url, id]);
-
-  const with_notes = false;
-  const loaded = true;
-  const with_download = false;
-  const with_share = true;
-  const with_enlarge = false;
-  const with_more_info = false;
 
   return (
     <div className="embed-flourish">
@@ -60,29 +54,23 @@ export default function View(props) {
               height: flourish_iframe_height,
             }}
           ></iframe>
-          {with_sources && flourishItemContent?.data_provenance?.data && (
-            <Sources
-              sources={flourishItemContent?.data_provenance?.data || []}
-            />
-          )}
-          <div className="visualization-toolbar">
+          {flourishItemContent && (<div className="visualization-toolbar">
             <div className="left-col">
-              {with_notes && <FigureNote notes={figure_note || []} />}
-              {with_sources && (
+              {with_notes && <FigureNote notes={flourishItemContent?.figure_note || []} />}
+              {flourishItemContent && with_sources && (
                 <Sources
                   sources={flourishItemContent?.data_provenance?.data || []}
                 />
               )}
-              {with_more_info && <MoreInfo href={data['@id']} />}
+              {with_more_info && <MoreInfo href={flourishItemContent["@id"]} />}
             </div>
             <div className="right-col">
-              {with_download && loaded && <Download viz={viz.current} />}
-              {with_share && loaded && (
-                <Share href={props?.properties['@id']} />
+              {with_share  && (
+                <Share href={flourishItemContent["@id"]} />
               )}
-              {with_enlarge && loaded && (
+              {with_enlarge && (
                 <Enlarge>
-                  <Tableau
+                  <View
                     {...props}
                     data={{
                       ...props.data,
@@ -97,7 +85,7 @@ export default function View(props) {
                 </Enlarge>
               )}
             </div>
-          </div>
+          </div>)}
         </div>
       ) : props.mode ? (
         <div>Embed flourish</div>
