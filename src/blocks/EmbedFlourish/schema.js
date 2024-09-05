@@ -65,33 +65,33 @@ const schema = (props) => {
       with_notes: {
         title: 'Show note',
         type: 'boolean',
-        defaultValue: true,
+        default: true,
       },
       with_sources: {
         title: 'Show sources',
         description: 'Will show sources set in this page Data provenance',
         type: 'boolean',
-        defaultValue: true,
+        default: true,
       },
       with_more_info: {
         title: 'Show more info',
         type: 'boolean',
-        defaultValue: true,
+        default: true,
       },
       with_enlarge: {
         title: 'Show enlarge button',
         type: 'boolean',
-        defaultValue: true,
+        default: true,
       },
       // with_download: {
       //   title: 'Show download button',
       //   type: 'boolean',
-      //   defaultValue: true,
+      //   default: true,
       // },
       with_share: {
         title: 'Show share button',
         type: 'boolean',
-        defaultValue: true,
+        default: true,
       },
     },
 
