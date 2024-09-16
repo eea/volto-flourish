@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getContent } from "@plone/volto/actions";
-import { flattenToAppURL } from "@plone/volto/helpers";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getContent } from '@plone/volto/actions';
+import { flattenToAppURL } from '@plone/volto/helpers';
 // import { Sources } from '@eeacms/volto-embed/Toolbar';
 
 import {
@@ -10,7 +10,7 @@ import {
   MoreInfo,
   Share,
   Enlarge,
-} from "@eeacms/volto-embed/Toolbar";
+} from '@eeacms/volto-embed/Toolbar';
 
 export default function View(props) {
   const { id, data } = props;
@@ -23,11 +23,11 @@ export default function View(props) {
     with_enlarge,
     with_more_info,
     flourish_item_url,
-    flourish_iframe_height = "600px",
+    flourish_iframe_height = '600px',
   } = data;
 
-  const flourish_url = flourish_item_url + "/@@flourish/index.html";
-  const vis_url = flattenToAppURL(flourish_item_url || "");
+  const flourish_url = flourish_item_url + '/@@flourish/index.html';
+  const vis_url = flattenToAppURL(flourish_item_url || '');
   const dispatch = useDispatch();
 
   const flourishItemContent = useSelector(
@@ -50,7 +50,7 @@ export default function View(props) {
             width="100%"
             title={flourishItemContent?.title}
             style={{
-              border: "0px",
+              border: '0px',
               height: flourish_iframe_height,
             }}
           ></iframe>
@@ -66,11 +66,11 @@ export default function View(props) {
                   />
                 )}
                 {with_more_info && (
-                  <MoreInfo href={flourishItemContent["@id"]} />
+                  <MoreInfo href={flourishItemContent['@id']} />
                 )}
               </div>
               <div className="right-col">
-                {with_share && <Share href={flourishItemContent["@id"]} />}
+                {with_share && <Share href={flourishItemContent['@id']} />}
                 {with_enlarge && (
                   <Enlarge>
                     <View
