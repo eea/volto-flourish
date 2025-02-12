@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
 import { flattenToAppURL } from '@plone/volto/helpers';
+import { default as Flourish } from '@eeacms/volto-flourish/components/Flourish';
 // import { Sources } from '@eeacms/volto-embed/Toolbar';
 
 import {
@@ -23,10 +24,9 @@ export default function View(props) {
     with_enlarge,
     with_more_info,
     flourish_item_url,
-    flourish_iframe_height = '600px',
+    // flourish_iframe_height = '600px',
   } = data;
 
-  const flourish_url = flourish_item_url + '/@@flourish/index.html';
   const vis_url = flattenToAppURL(flourish_item_url || '');
   const dispatch = useDispatch();
 
@@ -45,15 +45,7 @@ export default function View(props) {
     <div className="embed-flourish">
       {flourish_item_url ? (
         <div>
-          <iframe
-            src={flourish_url}
-            width="100%"
-            title={flourishItemContent?.title}
-            style={{
-              border: '0px',
-              height: flourish_iframe_height,
-            }}
-          ></iframe>
+          <Flourish baseUrl={flourish_item_url} />
           {flourishItemContent && (
             <div className="visualization-toolbar">
               <div className="left-col">
