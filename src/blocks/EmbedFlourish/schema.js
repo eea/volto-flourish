@@ -1,15 +1,14 @@
-import { defineMessages } from 'react-intl';
-
-const messages = defineMessages({
-  CSSHeight: {
-    id: 'CSS height',
-    defaultMessage: 'CSS height',
-  },
-  CSSFlourishHeightDescription: {
-    id: 'Iframe height',
-    defaultMessage: 'Flourish iframe height',
-  },
-});
+// import { defineMessages } from 'react-intl';
+// const messages = defineMessages({
+//   CSSHeight: {
+//     id: 'CSS height',
+//     defaultMessage: 'CSS height',
+//   },
+//   CSSFlourishHeightDescription: {
+//     id: 'Iframe height',
+//     defaultMessage: 'Flourish iframe height',
+//   },
+// });
 
 const schema = (props) => {
   return {
@@ -21,7 +20,7 @@ const schema = (props) => {
         fields: [
           'flourish_test_url',
           'flourish_item_url',
-          'flourish_iframe_height',
+          // 'flourish_iframe_height',
         ],
       },
       {
@@ -47,21 +46,21 @@ const schema = (props) => {
           </div>
         ),
       },
-      flourish_iframe_height: {
-        title: (
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://developer.mozilla.org/en-US/docs/Web/CSS/height"
-          >
-            {props.intl.formatMessage(messages.CSSHeight)}
-          </a>
-        ),
-        default: '600px',
-        description: props.intl.formatMessage(
-          messages.CSSFlourishHeightDescription,
-        ),
-      },
+      // flourish_iframe_height: {
+      //   title: (
+      //     <a
+      //       rel="noopener noreferrer"
+      //       target="_blank"
+      //       href="https://developer.mozilla.org/en-US/docs/Web/CSS/height"
+      //     >
+      //       {props.intl.formatMessage(messages.CSSHeight)}
+      //     </a>
+      //   ),
+      //   default: '600px',
+      //   description: props.intl.formatMessage(
+      //     messages.CSSFlourishHeightDescription,
+      //   ),
+      // },
       with_notes: {
         title: 'Show note',
         type: 'boolean',
