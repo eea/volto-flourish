@@ -18,7 +18,6 @@ const schema = (props) => {
         id: 'default',
         title: 'Default',
         fields: [
-          'flourish_test_url',
           'flourish_item_url',
           // 'flourish_iframe_height',
         ],
