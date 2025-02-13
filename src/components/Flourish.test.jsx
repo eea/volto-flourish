@@ -7,8 +7,6 @@ import Flourish from './Flourish';
 
 const mockStore = configureStore();
 
-jest.mock('./Flourish', () => () => <div className="flourish-embed" />);
-
 test('Flourish component', () => {
   const store = mockStore({
     intl: {
@@ -23,6 +21,7 @@ test('Flourish component', () => {
       <Flourish baseUrl={baseUrl} />
     </Provider>,
   );
+
   const json = component.toJSON();
   expect(json).toMatchSnapshot();
 });
