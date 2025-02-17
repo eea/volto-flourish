@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flourish component 1`] = `
+<div
+  className="flourish-embed"
+  data-src="http://example.com/@@flourish/index.html"
+/>
+`;
