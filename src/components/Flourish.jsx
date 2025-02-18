@@ -1,30 +1,30 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export default function Flourish({ baseUrl }) {
-  const containerRef = useRef(null);
   const flourishUrl = `${baseUrl}/@@flourish/index.html`;
   const scriptUrl = `${baseUrl}/@@flourish/flourish.embed.js`;
 
   useEffect(() => {
-    if (!baseUrl || !containerRef.current) return;
+    if (!baseUrl) return;
 
-    const script = document.createElement('script');
-    script.src = scriptUrl;
-    script.async = true;
-    script.onload = () => {};
+    if (!window.FlourishLoaded) {
+      window.Flourish = { disable_autoload: true };
 
-    document.body.appendChild(script);
+      const script = document.createElement('script');
+      script.src = scriptUrl;
+      script.async = true;
+      script.onload = () => {};
 
-    return () => {
-      document.body.removeChild(script);
-    };
+      document.body.appendChild(script);
+    } else {
+      setTimeout(() => {
+        const domNodes = document.querySelectorAll('.flourish-embed');
+        domNodes.forEach((domNode) => window.Flourish.loadEmbed(domNode));
+      }, 10);
+    }
+
+    return () => {};
   }, [baseUrl, scriptUrl]);
 
-  return (
-    <div
-      ref={containerRef}
-      className="flourish-embed"
-      data-src={flourishUrl}
-    ></div>
-  );
+  return <div className="flourish-embed" data-src={flourishUrl}></div>;
 }
