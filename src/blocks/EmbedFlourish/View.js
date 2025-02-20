@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { default as Flourish } from '@eeacms/volto-flourish/components/Flourish';
+import { v4 as uuid } from 'uuid';
 // import { Sources } from '@eeacms/volto-embed/Toolbar';
 
 import {
@@ -15,6 +16,7 @@ import {
 
 export default function View(props) {
   const { id, data } = props;
+  const uid = uuid();
 
   const {
     with_sources,
@@ -45,7 +47,7 @@ export default function View(props) {
     <div className="embed-flourish">
       {flourish_item_url ? (
         <div>
-          <Flourish baseUrl={flourish_item_url} />
+          <Flourish baseUrl={flourish_item_url} key={uid} id={uid} />
           {flourishItemContent && (
             <div className="visualization-toolbar">
               <div className="left-col">
