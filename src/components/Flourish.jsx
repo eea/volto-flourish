@@ -48,7 +48,7 @@ export default function Flourish({ baseUrl, id }) {
           }
         });
       }
-    }, 1000);
+    }, 200);
 
     return () => {};
   }, [baseUrl, scriptUrl, id, flourishUrl]);
