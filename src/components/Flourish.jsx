@@ -19,8 +19,12 @@ export default function Flourish({ baseUrl }) {
     } else {
       setTimeout(() => {
         const domNodes = document.querySelectorAll('.flourish-embed');
-        domNodes.forEach((domNode) => window.Flourish.loadEmbed(domNode));
-      }, 10);
+        domNodes.forEach((domNode) => {
+          window.Flourish.loadEmbed(domNode);
+          // eslint-disable-next-line no-console
+          console.log('Loaded Flourish for', domNode);
+        });
+      }, 500);
     }
 
     return () => {};
