@@ -1,17 +1,4 @@
 import { useEffect, useRef } from 'react';
-// const scripts_map = {};
-//
-const debugStyle = { height: '1px', backgroundColor: 'transparent' };
-
-function cleanup() {
-  delete window.Flourish;
-  window.FlourishConfig = {
-    public_url: window.location.origin,
-  };
-  delete window._Flourish_visualisation_id;
-  delete window._Flourish_template_id;
-  delete window._flourish_poll_items;
-}
 
 export default function Flourish({ baseUrl, id }) {
   const flourishUrl = `${baseUrl}/@@flourish/index.html`;
@@ -24,7 +11,6 @@ export default function Flourish({ baseUrl, id }) {
     setTimeout(() => {
       const container = nodeRef.current;
       if (!container) {
-        // cleanup();
         return;
       }
 
@@ -54,22 +40,18 @@ export default function Flourish({ baseUrl, id }) {
         document.querySelectorAll('.flourish-embed').forEach((node) => {
           //eslint-disable-next-line no-console
           console.log('Loading embed', node.id);
-          window.Flourish.loadEmbed(node);
+          try {
+            window.Flourish.loadEmbed(node);
+          } catch {
+            //eslint-disable-next-line no-console
+            console.log('Error loading flourish embed');
+          }
         });
       }
     }, 1000);
 
-    return () => {
-      // cleanup();
-    };
+    return () => {};
   }, [baseUrl, scriptUrl, id, flourishUrl]);
 
-  return (
-    <div
-      className="flourish-embed"
-      id={id}
-      ref={nodeRef}
-      style={debugStyle}
-    ></div>
-  );
+  return <div className="flourish-embed" id={id} ref={nodeRef}></div>;
 }
