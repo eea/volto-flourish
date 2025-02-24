@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
 import { flattenToAppURL } from '@plone/volto/helpers';
@@ -14,9 +14,24 @@ import {
   Enlarge,
 } from '@eeacms/volto-embed/Toolbar';
 
+// const overlayStyles = {
+//   position: 'absolute',
+//   top: 0,
+//   left: 0,
+//   width: '100%',
+//   backgroundColor: 'rgba(255, 255, 255, 0)',
+//   zIndex: 20000,
+//   pointerEvents: 'none',
+//   height: '100%',
+// };
+
 export default function View(props) {
-  const { id, data } = props;
-  const uid = uuid();
+  const {
+    id,
+    data,
+    // mode = 'view'
+  } = props;
+  const uid = useMemo(() => uuid(), []);
 
   const {
     with_sources,
@@ -43,11 +58,18 @@ export default function View(props) {
     }
   }, [dispatch, vis_url, id]);
 
+  // const editOverlay =
+  //   mode === 'edit' ? (
+  //     <div className="edit-overlay" style={overlayStyles} />
+  //   ) : null;
+
   return (
     <div className="embed-flourish">
       {flourish_item_url ? (
-        <div>
+        <>
           <Flourish baseUrl={flourish_item_url} key={uid} id={uid} />
+          {/* {editOverlay} */}
+
           {flourishItemContent && (
             <div className="visualization-toolbar">
               <div className="left-col">
@@ -84,7 +106,7 @@ export default function View(props) {
               </div>
             </div>
           )}
-        </div>
+        </>
       ) : props.mode ? (
         <div>Embed flourish</div>
       ) : null}

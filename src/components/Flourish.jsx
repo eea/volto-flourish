@@ -16,12 +16,6 @@ export default function Flourish({ baseUrl, id }) {
 
       container.setAttribute('data-src', flourishUrl);
 
-      //eslint-disable-next-line no-console
-      console.log(
-        'scripts',
-        document.querySelectorAll('script.flourish-embed-script'),
-      );
-
       if (
         document.querySelectorAll('script.flourish-embed-script').length === 0
       ) {
@@ -35,18 +29,12 @@ export default function Flourish({ baseUrl, id }) {
         };
         document.body.appendChild(script);
       } else {
-        //eslint-disable-next-line no-console
-        console.log('nodes', document.querySelectorAll('.flourish-embed'));
-        document.querySelectorAll('.flourish-embed').forEach((node) => {
+        const node = document.getElementById(id);
+        if (node && window.Flourish?.loadEmbed) {
           //eslint-disable-next-line no-console
           console.log('Loading embed', node.id);
-          try {
-            window.Flourish.loadEmbed(node);
-          } catch {
-            //eslint-disable-next-line no-console
-            console.log('Error loading flourish embed');
-          }
-        });
+          window.Flourish.loadEmbed(node);
+        }
       }
     }, 200);
 
