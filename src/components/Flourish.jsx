@@ -1,34 +1,45 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-export default function Flourish({ baseUrl }) {
+export default function Flourish({ baseUrl, id }) {
   const flourishUrl = `${baseUrl}/@@flourish/index.html`;
+  const nodeRef = useRef(null);
   const scriptUrl = `${baseUrl}/@@flourish/flourish.embed.js`;
 
   useEffect(() => {
     if (!baseUrl) return;
 
-    if (!window.FlourishLoaded) {
-      window.Flourish = { disable_autoload: true };
+    setTimeout(() => {
+      const container = nodeRef.current;
+      if (!container) {
+        return;
+      }
 
-      const script = document.createElement('script');
-      script.src = scriptUrl;
-      script.async = true;
-      script.onload = () => {};
+      container.setAttribute('data-src', flourishUrl);
 
-      document.body.appendChild(script);
-    } else {
-      setTimeout(() => {
-        const domNodes = document.querySelectorAll('.flourish-embed');
-        domNodes.forEach((domNode) => {
-          window.Flourish.loadEmbed(domNode);
-          // eslint-disable-next-line no-console
-          console.log('Loaded Flourish for', domNode);
-        });
-      }, 500);
-    }
+      if (
+        document.querySelectorAll('script.flourish-embed-script').length === 0
+      ) {
+        const script = document.createElement('script');
+        script.src = scriptUrl;
+        script.className = 'flourish-embed-script';
+        script.id = id;
+        script.onload = () => {
+          //eslint-disable-next-line no-console
+          console.log('loaded script', id);
+        };
+        document.body.appendChild(script);
+      } else {
+        const node = document.getElementById(id);
+        if (node && window.Flourish?.loadEmbed) {
+          //eslint-disable-next-line no-console
+          console.log('Loading embed', node.id);
+          window.Flourish.loadEmbed(node);
+        }
+      }
+    }, 200);
 
     return () => {};
-  }, [baseUrl, scriptUrl]);
+  }, [baseUrl, scriptUrl, id, flourishUrl]);
 
-  return <div className="flourish-embed" data-src={flourishUrl}></div>;
+  return <div className="flourish-embed" id={id} ref={nodeRef}></div>;
 }
