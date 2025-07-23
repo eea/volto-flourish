@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { addAppURL } from '@plone/volto/helpers';
+import { addAppURL, toPublicURL } from '@plone/volto/helpers';
 
 export default function Flourish({ baseUrl, id }) {
   const flourishUrl = `${baseUrl}/@@flourish/index.html`;
@@ -21,7 +21,7 @@ export default function Flourish({ baseUrl, id }) {
         document.querySelectorAll('script.flourish-embed-script').length === 0
       ) {
         const script = document.createElement('script');
-        script.src = addAppURL(scriptUrl);
+        script.src = addAppURL(toPublicURL(scriptUrl));
         script.className = 'flourish-embed-script';
         script.id = id;
         script.onload = () => {
