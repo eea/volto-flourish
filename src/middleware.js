@@ -14,6 +14,7 @@ const HEADERS = [
 export default function flourishMiddleware(req, res, next) {
   getAPIResourceWithAuth(req)
     .then((resource) => {
+      console.log(typeof resource.get);
       // Just forward the headers that we need
       HEADERS.forEach((header) => {
         if (resource.headers[header]) {
