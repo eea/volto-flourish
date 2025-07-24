@@ -21,7 +21,7 @@ export default function Flourish({ baseUrl, id }) {
         document.querySelectorAll('script.flourish-embed-script').length === 0
       ) {
         const script = document.createElement('script');
-        script.src = addAppURL(toPublicURL(scriptUrl));
+        script.src = toPublicURL(scriptUrl);
         script.className = 'flourish-embed-script';
         script.id = id;
         script.onload = () => {
