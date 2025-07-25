@@ -7,7 +7,7 @@ const applyConfig = (config) => {
     const flourishApiHandler = require('./middleware').default;
 
     const middleware = express.Router();
-    middleware.all('**/@@flourish/**', flourishApiHandler);
+    middleware.all('**/@@flourish**', flourishApiHandler);
     middleware.id = 'flourish';
 
     config.settings.expressMiddleware = [
