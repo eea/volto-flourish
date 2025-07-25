@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { addAppURL, toPublicURL } from '@plone/volto/helpers';
+import { addAppURL } from '@plone/volto/helpers';
+import superagent from 'superagent';
 
 export default function Flourish({ baseUrl, id }) {
   const flourishUrl = `${baseUrl}/@@flourish/index.html`;
@@ -20,15 +21,30 @@ export default function Flourish({ baseUrl, id }) {
       if (
         document.querySelectorAll('script.flourish-embed-script').length === 0
       ) {
-        const script = document.createElement('script');
-        script.src = toPublicURL(scriptUrl);
-        script.className = 'flourish-embed-script';
-        script.id = id;
-        script.onload = () => {
-          //eslint-disable-next-line no-console
-          console.log('loaded script', id);
-        };
-        document.body.appendChild(script);
+        // Get nonce from any existing script tag
+        const existingScript = document.querySelector('script[nonce]');
+        const nonce = existingScript?.nonce;
+
+        superagent
+          .get(scriptUrl)
+          .withCredentials()
+          .set('Accept', 'application/javascript')
+          .then((response) => {
+            const script = document.createElement('script');
+            script.className = 'flourish-embed-script';
+            script.id = id;
+            if (nonce) {
+              script.nonce = nonce;
+            }
+            script.textContent = response.text;
+            document.body.appendChild(script);
+            // eslint-disable-next-line no-console
+            console.log('Loaded script via superagent:', id);
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error('Failed to load Flourish script:', error);
+          });
       } else {
         const node = document.getElementById(id);
         if (node && window.Flourish?.loadEmbed) {

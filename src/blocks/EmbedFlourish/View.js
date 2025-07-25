@@ -1,7 +1,11 @@
 import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import {
+  flattenToAppURL,
+  toPublicURL,
+  expandToBackendURL,
+} from '@plone/volto/helpers';
 import { default as Flourish } from '@eeacms/volto-flourish/components/Flourish';
 import { v4 as uuid } from 'uuid';
 // import { Sources } from '@eeacms/volto-embed/Toolbar';
@@ -46,7 +50,7 @@ export default function View(props) {
 
   const vis_url = flattenToAppURL(flourish_item_url || '');
   const dispatch = useDispatch();
-
+  const baseFlorushUrl = expandToBackendURL(vis_url);
   const flourishItemContent = useSelector(
     (state) => state.content?.subrequests?.[id]?.data,
   );
@@ -67,7 +71,7 @@ export default function View(props) {
     <div className="embed-flourish">
       {flourish_item_url ? (
         <>
-          <Flourish baseUrl={flourish_item_url} key={uid} id={uid} />
+          <Flourish baseUrl={baseFlorushUrl} key={uid} id={uid} />
           {/* {editOverlay} */}
 
           {flourishItemContent && (
