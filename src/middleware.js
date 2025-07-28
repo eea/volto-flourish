@@ -17,8 +17,12 @@ export const getAPIResourceWithAuth = (req) =>
     const { settings } = config;
     const APISUFIX = settings.legacyTraverse ? '' : '/++api++';
     let path = req.path;
+
+    // Handle both js and css parameters
     if (req.query.js) {
       path = path.split('?')[0] + '/' + req.query.js;
+    } else if (req.query.css) {
+      path = path.split('?')[0] + '/' + req.query.css;
     }
     let apiPath = '';
     if (settings.internalApiPath && __SERVER__) {
@@ -29,6 +33,7 @@ export const getAPIResourceWithAuth = (req) =>
       apiPath = settings.apiPath;
     }
 
+    // eslint-disable-next-line no-console
     console.log('Request Path:', path);
 
     const request = superagent
