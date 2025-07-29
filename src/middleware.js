@@ -17,12 +17,15 @@ export const getAPIResourceWithAuth = (req) =>
     const { settings } = config;
     const APISUFIX = settings.legacyTraverse ? '' : '/++api++';
     let path = req.path;
+    let queryString = '';
 
     // Handle both js and css parameters
     if (req.query.js) {
       path = path.split('?')[0] + '/' + req.query.js;
-    } else if (req.query.css) {
-      path = path.split('?')[0] + '/' + req.query.css;
+    }
+    if (path.endsWith('/styles.css')) {
+      path = path.replace('/styles.css', '');
+      queryString = '?css=styles.css';
     }
     let apiPath = '';
     if (settings.internalApiPath && __SERVER__) {
@@ -37,7 +40,7 @@ export const getAPIResourceWithAuth = (req) =>
     console.log('Request Path:', path);
 
     const request = superagent
-      .get(`${apiPath}${__DEVELOPMENT__ ? '' : APISUFIX}${path}`)
+      .get(`${apiPath}${__DEVELOPMENT__ ? '' : APISUFIX}${path}${queryString}`)
       .maxResponseSize(settings.maxResponseSize)
       .responseType('blob');
     const authToken = req.universalCookies.get('auth_token');
