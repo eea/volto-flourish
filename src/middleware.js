@@ -24,6 +24,7 @@ export const getAPIResourceWithAuth = (req) =>
       path = path.split('?')[0] + '/' + req.query.js;
     }
     if (path.endsWith('/styles.css')) {
+      console.log('Replacing styles.css in path');
       path = path.replace('/styles.css', '');
       queryString = '?css=styles.css';
     }
@@ -38,6 +39,7 @@ export const getAPIResourceWithAuth = (req) =>
 
     // eslint-disable-next-line no-console
     console.log('Request Path:', path);
+    console.log('queryString:', queryString);
 
     const request = superagent
       .get(`${apiPath}${__DEVELOPMENT__ ? '' : APISUFIX}${path}${queryString}`)

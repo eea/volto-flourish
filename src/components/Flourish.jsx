@@ -5,7 +5,6 @@ export default function Flourish({ baseUrl, id }) {
   const flourishUrl = `${baseUrl}/@@flourish/index.html`;
   const nodeRef = useRef(null);
   const scriptUrl = `${baseUrl}/@@flourish?js=flourish.embed.js`;
-  const stylesUrl = `${baseUrl}/@@flourish?css=styles.css`;
 
   useEffect(() => {
     if (!baseUrl) return;
@@ -17,15 +16,6 @@ export default function Flourish({ baseUrl, id }) {
       }
 
       container.setAttribute('data-src', flourishUrl);
-
-      // Add styles if not already present
-      if (!document.querySelector('link[data-flourish-styles]')) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = toPublicURL(stylesUrl);
-        link.setAttribute('data-flourish-styles', 'true');
-        document.head.appendChild(link);
-      }
       // Add script if not already present
       if (
         document.querySelectorAll('script.flourish-embed-script').length === 0
@@ -50,7 +40,7 @@ export default function Flourish({ baseUrl, id }) {
     }, 200);
 
     return () => {};
-  }, [baseUrl, scriptUrl, stylesUrl, id, flourishUrl]);
+  }, [baseUrl, scriptUrl, id, flourishUrl]);
 
   return <div className="flourish-embed" id={id} ref={nodeRef}></div>;
 }
