@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContent } from '@plone/volto/actions';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import { getContent } from '@plone/volto/actions/content/content';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { default as Flourish } from '@eeacms/volto-flourish/components/Flourish';
 import { v4 as uuid } from 'uuid';
 // import { Sources } from '@eeacms/volto-embed/Toolbar';

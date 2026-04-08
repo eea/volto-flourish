@@ -1,4 +1,4 @@
-import { getAPIResourceWithAuth } from '@plone/volto/helpers';
+import { getAPIResourceWithAuth } from '@plone/volto/helpers/Api/APIResourceWithAuth';
 
 const HEADERS = [
   'accept-ranges',
