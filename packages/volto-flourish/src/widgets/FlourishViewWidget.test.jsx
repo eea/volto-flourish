@@ -13,9 +13,9 @@ const store = mockStore({
   },
 });
 
-jest.mock('@eeacms/volto-flourish/components/Flourish', () => () => (
-  <div data-testid="flourish-component" />
-));
+vi.mock('@eeacms/volto-flourish/components/Flourish', () => ({
+  default: () => <div data-testid="flourish-component" />,
+}));
 
 test('renders FlourishViewWidget component', () => {
   const mockValue = {
