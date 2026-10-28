@@ -21,7 +21,7 @@ describe('Edit', () => {
 
     const block = { blockId: '1' };
     const selected = false;
-    const onChangeBlock = jest.fn();
+    const onChangeBlock = vi.fn();
 
     const store = mockStore({
       userSession: { token: '1234' },
