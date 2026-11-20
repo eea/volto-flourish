@@ -1,0 +1,109 @@
+[
+ {
+  "RuleID": "env-short-secret-assignment",
+  "Description": "Uppercase env-style PASS/TOKEN/SECRET assignment",
+  "StartLine": 36,
+  "EndLine": 36,
+  "StartColumn": 11,
+  "EndColumn": 49,
+  "Match": "GITHUB_TOKEN=REDACTED",
+  "Secret": "REDACTED",
+  "Attributes": {
+   "git.author_email": "tiberiuichim@users.noreply.github.com",
+   "git.author_name": "Tiberiu Ichim",
+   "git.date": "2024-08-02T08:09:36Z",
+   "git.message": "Initial commit",
+   "git.platform": "github",
+   "git.remote_url": "https://github.com/eea/volto-flourish",
+   "git.sha": "9549a6a2d506f03a7901bd5b8667a63a135bb750",
+   "path": "RELEASE.md",
+   "resource": "git.patch_content",
+   "url": "https://github.com/eea/volto-flourish/blob/9549a6a2d506f03a7901bd5b8667a63a135bb750/RELEASE.md?plain=1#L36"
+  },
+  "Tags": [
+   "env",
+   "literal-secret",
+   "env",
+   "literal-secret"
+  ],
+  "Fingerprint": "9549a6a2d506f03a7901bd5b8667a63a135bb750:RELEASE.md:env-short-secret-assignment:36",
+  "File": "RELEASE.md",
+  "SymlinkFile": "",
+  "Commit": "9549a6a2d506f03a7901bd5b8667a63a135bb750",
+  "Entropy": 0.23519339,
+  "Author": "Tiberiu Ichim",
+  "Email": "tiberiuichim@users.noreply.github.com",
+  "Date": "2024-08-02T08:09:36Z",
+  "Message": "Initial commit"
+ },
+ {
+  "RuleID": "secret-literal-assignment",
+  "Description": "Secret-like literal assignment in source, YAML, env and config files",
+  "StartLine": 11,
+  "EndLine": 11,
+  "StartColumn": 3,
+  "EndColumn": 20,
+  "Match": "password = 'REDACTED'",
+  "Secret": "REDACTED",
+  "Attributes": {
+   "git.author_email": "tiberiuichim@users.noreply.github.com",
+   "git.author_name": "Tiberiu Ichim",
+   "git.date": "2024-08-02T08:09:36Z",
+   "git.message": "Initial commit",
+   "git.platform": "github",
+   "git.remote_url": "https://github.com/eea/volto-flourish",
+   "git.sha": "9549a6a2d506f03a7901bd5b8667a63a135bb750",
+   "path": "cypress/support/commands.js",
+   "resource": "git.patch_content",
+   "url": "https://github.com/eea/volto-flourish/blob/9549a6a2d506f03a7901bd5b8667a63a135bb750/cypress/support/commands.js#L11"
+  },
+  "Tags": [
+   "literal-secret",
+   "literal-secret"
+  ],
+  "Fingerprint": "9549a6a2d506f03a7901bd5b8667a63a135bb750:cypress/support/commands.js:secret-literal-assignment:11",
+  "File": "cypress/support/commands.js",
+  "SymlinkFile": "",
+  "Commit": "9549a6a2d506f03a7901bd5b8667a63a135bb750",
+  "Entropy": 2.321928,
+  "Author": "Tiberiu Ichim",
+  "Email": "tiberiuichim@users.noreply.github.com",
+  "Date": "2024-08-02T08:09:36Z",
+  "Message": "Initial commit"
+ },
+ {
+  "RuleID": "secret-literal-assignment",
+  "Description": "Secret-like literal assignment in source, YAML, env and config files",
+  "StartLine": 18,
+  "EndLine": 18,
+  "StartColumn": 28,
+  "EndColumn": 46,
+  "Match": "password: REDACTED",
+  "Secret": "REDACTED",
+  "Attributes": {
+   "git.author_email": "tiberiuichim@users.noreply.github.com",
+   "git.author_name": "Tiberiu Ichim",
+   "git.date": "2024-08-02T08:09:36Z",
+   "git.message": "Initial commit",
+   "git.platform": "github",
+   "git.remote_url": "https://github.com/eea/volto-flourish",
+   "git.sha": "9549a6a2d506f03a7901bd5b8667a63a135bb750",
+   "path": "cypress/support/commands.js",
+   "resource": "git.patch_content",
+   "url": "https://github.com/eea/volto-flourish/blob/9549a6a2d506f03a7901bd5b8667a63a135bb750/cypress/support/commands.js#L18"
+  },
+  "Tags": [
+   "literal-secret",
+   "literal-secret"
+  ],
+  "Fingerprint": "9549a6a2d506f03a7901bd5b8667a63a135bb750:cypress/support/commands.js:secret-literal-assignment:18",
+  "File": "cypress/support/commands.js",
+  "SymlinkFile": "",
+  "Commit": "9549a6a2d506f03a7901bd5b8667a63a135bb750",
+  "Entropy": 2.947703,
+  "Author": "Tiberiu Ichim",
+  "Email": "tiberiuichim@users.noreply.github.com",
+  "Date": "2024-08-02T08:09:36Z",
+  "Message": "Initial commit"
+ }
+]
