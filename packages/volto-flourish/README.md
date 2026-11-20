@@ -6,6 +6,19 @@
 
 [Volto](https://github.com/plone/volto) add-on
 
+## Upgrade
+
+### Upgrading to 2.x
+
+> This version requires `Volto 18` or `Volto 19` and Node.js 22.
+
+The block id, its schema fields and the URLs it renders are unchanged, so nothing needs to change on a site. The published package now lives in `packages/volto-flourish`, and the release adds Volto 19 support.
+
+#### Breaking changes
+
+- **Node.js 22 or newer is required** (`engines.node >= 22`).
+- **React 18 is required.** The package declares `react` and `react-dom` as `^18.2.0` peers.
+
 ## Features
 
 Flourish integration
