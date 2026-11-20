@@ -1,0 +1,7 @@
+{
+  "title": "Flourish",
+  "frontend_addon_name": "volto-flourish",
+  "description": "@eeacms/volto-flourish: Volto add-on",
+  "volto_version": "19.3.0",
+  "__template__": "frontend_addon"
+}
